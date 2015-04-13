@@ -1,0 +1,43 @@
+---
+
+- name: 'Create config and data directories'
+  sudo: true
+  file:
+    state: 'directory'
+    path: '/var/lib/znc/configs'
+
+- name: 'Configure'
+  sudo: true
+  template:
+    src: 'znc.conf'
+    dest: '/var/lib/znc/configs/znc.conf'
+    mode: '0600'
+    backup: true
+  register: 'configure'
+
+- name: 'Stop znc to change the config'
+  sudo: true
+  when: 'configure.changed'
+  docker:
+    name: 'znc'
+    image: 'jimeh/znc'
+    state: 'stopped'
+
+- name: "Configure znc now that it's stopped"
+  sudo: true
+  when: 'configure.changed'
+  template:
+    src: 'znc.conf'
+    dest: '/var/lib/znc/configs/znc.conf'
+    mode: '0600'
+
+- name: 'Run'
+  sudo: true
+  docker:
+    name: 'znc'
+    state: 'running'
+    image: 'jimeh/znc'
+    ports:
+      - '36667:6667'
+    volumes:
+      - '/var/lib/znc:/znc-data'

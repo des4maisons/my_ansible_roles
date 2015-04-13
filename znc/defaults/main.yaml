@@ -1,0 +1,13 @@
+---
+znc_admin_username: 'admin'
+# default password is admin. If you don't like it, change the password via the
+# web interface and replace the hash and salt from the changed config.
+znc_admin_password_hash: '1b9a69be60544ae4a83147ebb04c4c1edc24dba4c62f8f25ef5603b06c264476'
+znc_admin_password_salt: '5zD6V:PYLf*jZcL8VbZY'
+znc_admin_ip_allow: '*'
+
+znc_users:
+  - username: 'default'
+    # default password is admin
+    password_hash: '1b9a69be60544ae4a83147ebb04c4c1edc24dba4c62f8f25ef5603b06c264476'
+    password_salt: '5zD6V:PYLf*jZcL8VbZY'
