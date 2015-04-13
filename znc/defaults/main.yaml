@@ -11,3 +11,9 @@ znc_users:
     # default password is admin
     password_hash: '1b9a69be60544ae4a83147ebb04c4c1edc24dba4c62f8f25ef5603b06c264476'
     password_salt: '5zD6V:PYLf*jZcL8VbZY'
+    networks:
+      - human_name: 'freenode'
+        host: 'irc.freenode.net'
+        port: '6667'
+        channels:
+          - name: '#freenode'
