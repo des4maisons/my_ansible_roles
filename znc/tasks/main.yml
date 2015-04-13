@@ -9,7 +9,7 @@
 - name: 'Configure'
   sudo: true
   template:
-    src: 'znc.conf'
+    src: 'znc.conf.jinja'
     dest: '/var/lib/znc/configs/znc.conf'
     mode: '0600'
     backup: true
@@ -27,7 +27,7 @@
   sudo: true
   when: 'configure.changed'
   template:
-    src: 'znc.conf'
+    src: 'znc.conf.jinja'
     dest: '/var/lib/znc/configs/znc.conf'
     mode: '0600'
 
