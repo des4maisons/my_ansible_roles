@@ -81,16 +81,17 @@ Version = 1.4
 	StatusPrefix = *
 	TimestampFormat = [%H:%M:%S]
 
-        {% for network in user.networks %}
+	{% for network in user.networks -%}
 	<Network {{ network.human_name }} >
 		FloodBurst = 4
 		FloodRate = 1.00
 		IRCConnectEnabled = true
 		Server = {{ network.host }} {{ network.port }}
 
-		{% for channel in network.channels -%}
-		<Chan {{ channel.name }}></Chan>
-		{% endfor -%}
+		{% for channel in network.channels %}
+		<Chan {{ channel.name }}>
+		</Chan>
+		{% endfor %}
 
 	</Network>
 	{% endfor %}
